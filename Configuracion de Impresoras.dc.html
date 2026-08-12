@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: oklch(0.94 0.015 275); }
+  a { color: rgb(27,56,146); }
+  a:hover { color: rgb(20,42,112); }
+</style>
+</helmet>
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:60px 20px; font-family:'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; box-sizing:border-box;">
+  <div style="position:relative; width:430px; height:932px; border-radius:20px; overflow:hidden; background:rgb(27,56,146); box-shadow:0 10px 40px rgba(0,0,0,0.2);">
+
+    <!-- Header -->
+    <div style="position:absolute; left:0; top:0; width:430px; height:100px; box-sizing:border-box; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; overflow:hidden;">
+      <div style="position:absolute; right:20px; top:6px; width:80px; height:99px; opacity:0.08; background:rgb(255,255,255); border-radius:8px; transform:rotate(8deg);"></div>
+      <a href="Submenu%20Configuraciones.dc.html" style="position:relative; display:flex; align-items:center; gap:10px; flex-shrink:0; text-decoration:none;">
+        <span style="color:#fff; font-weight:700; font-size:20px; line-height:1;">&#8592;</span>
+        <span style="color:#fff; font-weight:700; font-size:18px;">Menú</span>
+      </a>
+      <div style="position:relative; display:flex; align-items:center; gap:14px; flex:1; justify-content:center;">
+        <div style="position:relative; width:22px; height:29px; flex-shrink:0;">
+          <div style="position:absolute; left:4px; top:0; width:14px; height:14px; border-radius:50%; background:#fff;"></div>
+          <div style="position:absolute; left:0; top:17px; width:22px; height:12px; border-radius:11px 11px 0 0; background:#fff;"></div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+          <span style="color:#fff; font-weight:700; font-size:14px; white-space:nowrap;">Ángel Vargas Cruz</span>
+          <span style="color:#fff; font-weight:400; font-size:14px; white-space:nowrap;">604512</span>
+        </div>
+      </div>
+      <div style="position:relative; width:37px; height:37px; border-radius:50%; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; flex-shrink:0;">
+        <div style="width:4px; height:4px; border-radius:50%; background:rgb(27,56,146);"></div>
+        <div style="width:4px; height:4px; border-radius:50%; background:rgb(27,56,146);"></div>
+        <div style="width:4px; height:4px; border-radius:50%; background:rgb(27,56,146);"></div>
+      </div>
+    </div>
+
+    <!-- Content card -->
+    <div style="position:absolute; left:0; top:61px; width:430px; height:871px; border-radius:30px 30px 0 0; background:#fff; box-shadow:0 0 5px rgba(0,0,0,0.1); box-sizing:border-box; padding:22px 32px; display:flex; flex-direction:column; gap:30px;">
+      <div style="display:flex; flex-direction:column; gap:23px;">
+        <span style="font-weight:700; font-size:20px; color:#000; text-align:center;">Configuración de impresoras</span>
+        <div style="height:1px; background:rgb(225,225,225); width:100%;"></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:30px;">
+        <div style="display:flex; align-items:center; gap:11px;">
+          <div style="position:relative; width:20px; height:16px; flex-shrink:0;">
+            <div style="position:absolute; left:4px; top:0; width:12px; height:8px; border-radius:2px 2px 0 0; background:#000;"></div>
+            <div style="position:absolute; left:0; top:6px; width:20px; height:7px; border-radius:1px; background:#000;"></div>
+            <div style="position:absolute; left:4px; top:10px; width:12px; height:7px; background:#000;"></div>
+          </div>
+          <span style="font-weight:700; font-size:18px; color:#000;">Tus impresoras</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:700; font-size:14px; color:#000;">Nombre</span>
+            <span style="font-weight:700; font-size:14px; color:#000;">Opciones</span>
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <sc-for list="{{ printers }}" as="p" hint-placeholder-count="3">
+              <div style="display:flex; flex-direction:column; padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid rgb(228,228,228);">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="display:flex; flex-direction:column; gap:6px;">
+                    <span style="font-weight:400; font-size:14px; color:#000;">{{ p.name }}</span>
+                    <sc-if value="{{ p.isDefault }}">
+                      <span style="font-weight:500; font-size:14px; color:rgb(27,56,146);">Impresora predeterminada</span>
+                    </sc-if>
+                  </div>
+                  <div onClick="{{ p.onOptions }}" style="width:36px; height:36px; border-radius:50%; background:rgb(27,56,146); box-shadow:0 4px 4px rgba(0,0,0,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer;">
+                    <span style="color:#fff; font-weight:700; font-size:20px; letter-spacing:1px; line-height:0; margin-top:6px;">&#8226;&#8226;&#8226;</span>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer add button -->
+    <div style="position:absolute; left:0; bottom:0; width:430px; height:124px; border-radius:30px 30px 0 0; background:#fff; box-shadow:0 -5px 5px rgba(0,0,0,0.1); box-sizing:border-box; padding:30px 32px 37px; display:flex; align-items:center;">
+      <div onClick="{{ addPrinter }}" style="width:100%; height:60px; border-radius:5px; background:rgb(27,56,146); display:flex; align-items:center; justify-content:center; gap:14px; cursor:pointer;">
+        <span style="color:#fff; font-weight:400; font-size:18px;">Agregar impresora</span>
+        <span style="color:#fff; font-weight:700; font-size:20px; line-height:0;">&#43;</span>
+      </div>
+    </div>
+
+    <!-- Backdrop -->
+    <div onClick="{{ closeSheets }}" style="{{ backdropStyle }}"></div>
+
+    <!-- Options sheet -->
+    <div style="{{ optionsSheetStyle }}">
+      <div style="position:absolute; left:50%; top:-44px; transform:translateX(-50%); width:88px; height:88px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center;">
+        <div style="width:76px; height:76px; border-radius:50%; background:rgb(27,56,146); box-shadow:0 0 7.5px rgba(0,0,0,0.25); display:flex; align-items:center; justify-content:center;">
+          <span style="color:#fff; font-weight:700; font-size:20px; letter-spacing:1px; line-height:0; margin-top:6px;">&#8226;&#8226;&#8226;</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:17px;">
+        <span style="font-weight:700; font-size:18px; color:#000; text-align:center;">{{ selectedPrinter.name }}</span>
+        <div style="height:1px; background:rgb(228,228,228); width:100%;"></div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:700; font-size:18px; color:#000;">Estado</span>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:12px; height:12px; border-radius:50%; background:rgb(45,170,129);"></div>
+          <span style="font-weight:400; font-size:18px; color:#000;">Lista</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:15px;">
+        <div onClick="{{ setDefault }}" style="height:60px; border-radius:5px; background:rgb(27,56,146); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:400; font-size:18px;">Elegir impresora predeterminada</span>
+        </div>
+        <div onClick="{{ openUsage }}" style="height:60px; border-radius:5px; background:rgb(27,56,146); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:400; font-size:18px;">Configurar uso</span>
+        </div>
+        <div onClick="{{ askDelete }}" style="height:60px; border-radius:5px; background:rgb(230,0,43); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:400; font-size:18px;">Eliminar impresora</span>
+        </div>
+        <div onClick="{{ closeSheets }}" style="height:60px; border-radius:5px; background:rgb(230,0,43); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:700; font-size:22px; line-height:0;">&#10005;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage sheet -->
+    <div style="{{ usageSheetStyle }}">
+      <div style="display:flex; flex-direction:column; gap:17px;">
+        <span style="font-weight:700; font-size:18px; color:#000; text-align:center;">Configurar uso</span>
+        <div style="height:1px; background:rgb(228,228,228); width:100%;"></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <span style="font-weight:400; font-size:14px; color:#000;">¿Qué se imprimirá desde {{ selectedPrinter.name }}?</span>
+        <select value="{{ usageDraft }}" onChange="{{ setUsageDraft }}" style="height:50px; border-radius:5px; border:1px solid rgb(210,210,210); padding:0 14px; font-family:'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:16px; color:#000; background:#fff;">
+          <option value="Etiqueta única">Etiqueta única</option>
+          <option value="Factura">Factura</option>
+          <option value="Embarque">Embarque</option>
+        </select>
+      </div>
+      <div style="display:flex; gap:16px;">
+        <div onClick="{{ closeSheets }}" style="flex:1; height:60px; border-radius:5px; background:rgb(230,0,43); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:700; font-size:22px; line-height:0;">&#10005;</span>
+        </div>
+        <div onClick="{{ confirmUsage }}" style="flex:1; height:60px; border-radius:5px; background:rgb(45,170,129); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:700; font-size:22px; line-height:0;">&#10003;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete sheet -->
+    <div style="{{ deleteSheetStyle }}">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <span style="font-weight:700; font-size:18px; color:#000; text-align:center;">Eliminar impresora</span>
+        <div style="height:1px; background:rgb(228,228,228); width:100%;"></div>
+        <span style="font-weight:400; font-size:14px; color:#000; text-align:center; white-space:pre-line;">{{ deleteQuestion }}</span>
+      </div>
+      <div style="display:flex; gap:16px;">
+        <div onClick="{{ closeSheets }}" style="flex:1; height:60px; border-radius:5px; background:rgb(230,0,43); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:700; font-size:22px; line-height:0;">&#10005;</span>
+        </div>
+        <div onClick="{{ confirmDelete }}" style="flex:1; height:60px; border-radius:5px; background:rgb(45,170,129); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          <span style="color:#fff; font-weight:700; font-size:22px; line-height:0;">&#10003;</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div style="{{ toastStyle }}">
+      <div style="position:relative; width:366px; height:106px; border-radius:10px; background:rgb(36,44,50); box-shadow:0 0 7.5px rgba(0,0,0,0.25); overflow:hidden;">
+        <div style="position:absolute; left:1px; bottom:0; width:356px; height:5px; border-radius:0 0 0 20px; background:rgb(45,170,129);"></div>
+        <div style="position:absolute; left:17px; top:40px; width:25px; height:25px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center;">
+          <span style="color:rgb(45,170,129); font-weight:700; font-size:16px; line-height:0;">&#10003;</span>
+        </div>
+        <div style="position:absolute; left:59px; top:20px; width:250px;">
+          <div style="color:#fff; font-weight:700; font-size:18px;">{{ toastTitle }}</div>
+          <div style="color:#fff; font-weight:100; font-size:14px; margin-top:8px;">{{ toastMessage }}</div>
+        </div>
+        <div onClick="{{ closeToast }}" style="position:absolute; right:16px; top:16px; color:#fff; font-weight:400; font-size:16px; cursor:pointer; opacity:0.7;">&#10005;</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;confirmBeforeDelete&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Comportamiento&quot;},
+  &quot;toastDurationMs&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 3000, &quot;min&quot;: 1500, &quot;max&quot;: 6000, &quot;step&quot;: 250, &quot;unit&quot;: &quot;ms&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Comportamiento&quot;},
+  &quot;initialDefaultPrinter&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;HP Color LaserJet Pro M1800&quot;, &quot;options&quot;: [&quot;HP Color LaserJet Pro M1800&quot;, &quot;Canon Color ImageClass MF656Cdw&quot;, &quot;HP Color LaserJet Pro M500&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Comportamiento&quot;}
+}">
+class Component extends DCLogic {
+  state = {
+    printers: [
+      { id: 1, name: "HP Color LaserJet Pro M1800", isDefault: true, usage: "Etiqueta única" },
+      { id: 2, name: "Canon Color ImageClass MF656Cdw", isDefault: false, usage: "Etiqueta única" },
+      { id: 3, name: "HP Color LaserJet Pro M500", isDefault: false, usage: "Etiqueta única" },
+    ],
+    sheet: null, // null | 'options' | 'delete' | 'usage'
+    selectedId: null,
+    usageDraft: "Etiqueta única",
+    toast: null, // { title, message }
+    nextId: 4,
+  };
+
+  componentDidMount() {
+    const defaultName = this.props.initialDefaultPrinter;
+    if (defaultName) {
+      this.setState(s => ({
+        printers: s.printers.map(p => ({ ...p, isDefault: p.name === defaultName })),
+      }));
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._toastTimer);
+  }
+
+  openOptions(id) {
+    this.setState({ sheet: "options", selectedId: id });
+  }
+
+  closeSheets() {
+    this.setState({ sheet: null, selectedId: null });
+  }
+
+  askDelete() {
+    if (this.props.confirmBeforeDelete === false) {
+      this.confirmDelete();
+    } else {
+      this.setState({ sheet: "delete" });
+    }
+  }
+
+  confirmDelete() {
+    const removed = this.state.printers.find(p => p.id === this.state.selectedId);
+    this.setState(s => ({
+      printers: s.printers.filter(p => p.id !== s.selectedId),
+      sheet: null,
+      selectedId: null,
+    }));
+    if (removed) this.showToast("Impresora eliminada", "Se ha eliminado \"" + removed.name + "\" de tus impresoras.");
+  }
+
+  setDefault() {
+    const target = this.state.printers.find(p => p.id === this.state.selectedId);
+    this.setState(s => ({
+      printers: s.printers.map(p => ({ ...p, isDefault: p.id === s.selectedId })),
+      sheet: null,
+      selectedId: null,
+    }));
+    if (target) this.showToast("Impresora predeterminada", "\"" + target.name + "\" ahora es tu impresora predeterminada.");
+  }
+
+  openUsage() {
+    const printer = this.state.printers.find(p => p.id === this.state.selectedId);
+    this.setState({ sheet: "usage", usageDraft: printer ? printer.usage : "Etiqueta única" });
+  }
+
+  setUsageDraft(e) {
+    this.setState({ usageDraft: e.target.value });
+  }
+
+  confirmUsage() {
+    const usage = this.state.usageDraft;
+    const target = this.state.printers.find(p => p.id === this.state.selectedId);
+    this.setState(s => ({
+      printers: s.printers.map(p => p.id === s.selectedId ? { ...p, usage: s.usageDraft } : p),
+      sheet: null,
+      selectedId: null,
+    }));
+    if (target) this.showToast("Uso configurado", "\"" + target.name + "\" ahora imprimirá: " + usage + ".");
+  }
+
+  addPrinter() {
+    const id = this.state.nextId;
+    const name = "Impresora nueva " + id;
+    this.setState(s => ({
+      printers: [...s.printers, { id, name, isDefault: false }],
+      nextId: id + 1,
+    }));
+    this.showToast("Impresora conectada", "Se ha conectado con la impresora correctamente.");
+  }
+
+  showToast(title, message) {
+    clearTimeout(this._toastTimer);
+    this.setState({ toast: { title, message } });
+    const duration = this.props.toastDurationMs ?? 3000;
+    this._toastTimer = setTimeout(() => this.setState({ toast: null }), duration);
+  }
+
+  closeToast() {
+    clearTimeout(this._toastTimer);
+    this.setState({ toast: null });
+  }
+
+  renderVals() {
+    const { printers, sheet, selectedId, usageDraft, toast } = this.state;
+    const selectedPrinter = printers.find(p => p.id === selectedId) || { name: "", usage: "" };
+    const sheetBase = {
+      position: "absolute", left: 0, bottom: 0, width: "430px",
+      boxSizing: "border-box", padding: "54px 32px 32px", display: "flex",
+      flexDirection: "column", gap: "15px", background: "#fff",
+      borderRadius: "30px 30px 0 0", boxShadow: "0px -1px 9px rgba(0,0,0,0.25)",
+      transition: "transform 0.32s ease",
+    };
+    const optionsOpen = sheet === "options";
+    const deleteOpen = sheet === "delete";
+    const usageOpen = sheet === "usage";
+    return {
+      printers: printers.map((p, i) => ({
+        ...p,
+        onOptions: () => this.openOptions(p.id),
+      })),
+      selectedPrinter,
+      usageDraft,
+      deleteQuestion: "¿Desea eliminar la impresora \n" + selectedPrinter.name + "?",
+      backdropStyle: {
+        position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)",
+        opacity: sheet ? 1 : 0, pointerEvents: sheet ? "auto" : "none",
+        transition: "opacity 0.3s ease",
+      },
+      optionsSheetStyle: { ...sheetBase, height: "460px", transform: optionsOpen ? "translateY(0)" : "translateY(110%)" },
+      deleteSheetStyle: { ...sheetBase, height: "265px", transform: deleteOpen ? "translateY(0)" : "translateY(110%)" },
+      usageSheetStyle: { ...sheetBase, height: "300px", transform: usageOpen ? "translateY(0)" : "translateY(110%)" },
+      toastTitle: toast ? toast.title : "",
+      toastMessage: toast ? toast.message : "",
+      toastStyle: {
+        position: "absolute", left: "32px", top: "24px",
+        opacity: toast ? 1 : 0,
+        transform: toast ? "translateY(0)" : "translateY(-24px)",
+        transition: "all 0.3s ease",
+        pointerEvents: toast ? "auto" : "none",
+      },
+      closeSheets: () => this.closeSheets(),
+      askDelete: () => this.askDelete(),
+      confirmDelete: () => this.confirmDelete(),
+      setDefault: () => this.setDefault(),
+      openUsage: () => this.openUsage(),
+      setUsageDraft: (e) => this.setUsageDraft(e),
+      confirmUsage: () => this.confirmUsage(),
+      addPrinter: () => this.addPrinter(),
+      closeToast: () => this.closeToast(),
+    };
+  }
+}
+</script>
+</body>
+</html>
